@@ -1,0 +1,55 @@
+const A = new Promise((resolve, reject) => {
+ 
+        resolve('The first promise has resolved');
+});
+
+const B = new Promise((resolve, reject) => {
+   
+      
+        resolve('The second promise has resolved');
+
+});
+const C = new Promise((resolve, reject) => {
+   
+        resolve('The third promise has resolved');
+
+});
+const D = new Promise((resolve, reject) => {
+    
+  
+        resolve('The fourth promise has resolved');
+   
+
+});
+const E = new Promise((resolve, reject) => {
+  
+        resolve('The fifth promise has resolved');
+         //reject(" 5th promise has reject")
+  
+});
+
+
+A.then(res=>{
+  console.log(res);
+  Promise.all([B,C]).then(result=>{
+    console.log(result);
+    console.log("B & C has resolved");
+    D.then(res=>{
+      console.log(res);
+      E.then(res=>{
+        console.log(res);
+        console.log("all promises has resolved");
+        
+      })
+      .catch(err=>{
+        console.error(err);
+        D.then(result=>{
+          console.log(result)
+        })
+      })
+    
+    })
+  })
+
+      
+})
